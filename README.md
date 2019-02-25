@@ -52,3 +52,10 @@ Be sure to setup `config.ini`.
 ## Requirements
 
 * [pyodbc](https://github.com/mkleehammer/pyodbc)
+
+<hr>
+
+### Update history
+
+*  1.02 - Added `timeout` parameter to handle situation if server has not issued a response.
+*  1.01 - Release version.

@@ -37,7 +37,7 @@ def get_km_time(n, latA, lonA, latB, lonB, id_=None):
     url = f'http://www.yournavigation.org/api/1.0/gosmore.php?format=kml&flat={latA}&' + \
           f'flon={lonA}&tlat={latB}&tlon={lonB}&' + \
           f'v=motorcar&fast={n}&layer=mapnik&format=geojson'
-    response = requests.get(url)
+    response = requests.get(url, timeout=15)
     assert response.status_code == 200, 'Response status is {}'.format(response.status_code)
     try:
         data = response.json()
@@ -81,7 +81,7 @@ def geoYN(args, db_params):
 
                 # YN_fast = 1 selects the fastest route, 0 the shortest route
                 for n in (0, 1):
-                    km_time[n] = kt(*get_km_time(n, latA, lonA, latB, lonB))
+                    km_time[n] = kt(*get_km_time(n, latA, lonA, latB, lonB, id_))
 
                 sql.update_dist(id_, km_time)
 
