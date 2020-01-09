@@ -67,11 +67,12 @@ def geoYN(args, db_params):
             print("Кол-во маршрутов без расстояния: ", sql.count_empty_rows())
             return
 
-        start = time.localtime()
-        print('Script started at {}.'.format(time.strftime("%d-%m-%Y %H:%M", start)))
+    start = time.localtime()
+    print('Script started at {}.'.format(time.strftime("%d-%m-%Y %H:%M", start)))
 
-        while True:
-            try:
+    while True:
+        try:
+            with DBConnect(**db_params) as sql:
                 # Row without distance
                 row = sql.empty_dist()
                 if not row:
@@ -88,10 +89,10 @@ def geoYN(args, db_params):
                 # tracking because script appeares to be frozen sometimes
                 print("id = {}; route_km = {}; time = {}; trips_km = {}; time = {}"
                        .format(id_, *km_time[1], *km_time[0]))
-            except Exception as e:
-                print('Row: ', row)
-                print(e)
-                time.sleep(3)
+        except Exception as e:
+            print('Row: ', row)
+            print(e)
+            time.sleep(3)
 
     end = time.localtime()
     print('Script ended at {}.'.format(time.strftime("%d-%m-%Y %H:%M", end)))

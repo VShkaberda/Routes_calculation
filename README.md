@@ -57,6 +57,7 @@ Be sure to setup `config.ini`.
 
 ### Update history
 
+*  1.04 - Fixed connection issues.
 *  1.03 - Deleted final <i>Input</i>, because program is intended to be used from cmd/terminal with arguments.
 *  1.02 - Added `timeout` parameter to handle situation if server has not issued a response.
 *  1.01 - Release version.
